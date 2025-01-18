@@ -57,19 +57,16 @@ function sumSalary(obj) {
 
     let sum = 0;
 
-    for (let key in obj) {
+    for (const department in obj) {
 
-        if (key === 'salary')
-            sum += obj[key];
-
-        if (Array.isArray(obj[key])) {
-            for (let el of obj[key]) {
-                if (el.salary) {
-                    sum += el.salary;
+        if (Array.isArray(obj[department])) {
+            for (const employee of obj[department]) {
+                if (employee.salary) {
+                    sum += employee.salary;
                 }
             }
-        } else if (typeof obj[key] === 'object') {
-            sum += sumSalary(obj[key]);
+        } else {
+            sum += sumSalary(obj[department]);
         }
     }
     return sum;
